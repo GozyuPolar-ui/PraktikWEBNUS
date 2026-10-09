@@ -7,23 +7,24 @@
   <meta name="description" content="Website resmi NUS High School of Mathematics and Science - sekolah khusus matematika dan sains di Singapura.">
   <title>NUS High School of Mathematics and Science</title>
 
-  <!-- Bootstrap 5 CSS (lokal dari node_modules) -->
+  <!-- Bootstrap 5 CSS (file lokal di folder vendor) -->
   <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 
-  <!-- Bootstrap Icons (ikon akademik dan media sosial) -->
+  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
 
   <!-- Google Fonts: Poppins (judul) dan Inter (isi) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <!-- CSS eksternal -->
+  <!-- CSS buatan sendiri -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- ==================== HEADER / NAVBAR ==================== -->
+  <!-- ==================== NAVBAR ==================== -->
   <header>
+    <!-- navbar-expand-lg: menu terbuka di layar besar, jadi hamburger di layar kecil -->
     <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
       <div class="container">
 
@@ -38,7 +39,7 @@
           </span>
         </a>
 
-        <!-- Tombol hamburger (muncul di layar kecil) -->
+        <!-- Tombol hamburger (layar kecil) -->
         <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse" data-bs-target="#menuUtama"
                 aria-controls="menuUtama" aria-expanded="false"
@@ -46,7 +47,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Menu navigasi -->
+        <!-- Daftar menu -->
         <div class="collapse navbar-collapse" id="menuUtama">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
@@ -64,55 +65,40 @@
   </header>
 
   <main>
-    <!-- ==================== HERO SECTION ==================== -->
-    <!--
-      <section> = elemen semantik HTML5 untuk satu bagian tematik.
-      id="home"  = tujuan anchor menu Home dan logo navbar.
-      class="hero" = kelas buatan sendiri. Section ini jadi "panggung" tempat
-      foto (carousel), lapisan gelap, dan teks ditumpuk.
-    -->
+
+    <!-- ==================== HERO ==================== -->
     <section id="home" class="hero">
 
-      <!--
-        CAROUSEL (komponen Bootstrap), sekarang HANYA berisi foto.
-        - data-bs-ride="carousel" : slide berganti otomatis (default 5 detik)
-        - Pengunjung tetap bisa pindah manual: panah, titik, atau swipe di HP
-      -->
+      <!-- Carousel Bootstrap: hanya foto yang bergeser, ganti otomatis tiap 5 detik -->
       <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
 
-        <!-- Indikator titik: satu titik per slide, bisa diklik untuk lompat -->
+        <!-- Titik indikator, satu per slide -->
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
           <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
 
-        <!-- carousel-inner = wadah semua slide -->
+        <!-- Isi slide (class "active" = slide pertama yang tampil) -->
         <div class="carousel-inner">
-
-          <!-- Slide 1: class "active" = slide yang tampil pertama (wajib hanya satu) -->
-          <div class="carousel-item active" data-bs-interval="5000">
+          <div class="carousel-item active">
             <img src="images/banner1.png"
                  class="d-block w-100"
                  alt="Gedung dan lingkungan NUS High School of Mathematics and Science">
           </div>
-
-          <!-- Slide 2 -->
-          <div class="carousel-item" data-bs-interval="5000">
+          <div class="carousel-item">
             <img src="images/banner2.jpg"
                  class="d-block w-100"
                  alt="Kegiatan siswa NUS High School of Mathematics and Science">
           </div>
-
-          <div class="carousel-item" data-bs-interval="5000">
+          <div class="carousel-item">
             <img src="images/banner3.jpg"
                  class="d-block w-100"
                  alt="Fasilitas pembelajaran NUS High School of Mathematics and Science">
           </div>
-
         </div>
 
-        <!-- Tombol panah kiri/kanan (navigasi manual) -->
+        <!-- Panah kiri/kanan -->
         <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Sebelumnya</span>
@@ -124,61 +110,41 @@
 
       </div>
 
-      <!--
-        TEKS HERO (TETAP, tidak ikut bergeser)
-        Letaknya DI LUAR carousel tapi di dalam section yang sama.
-        CSS menumpuknya di atas foto.
-      -->
+      <!-- Teks hero: di luar carousel, jadi tetap diam saat foto bergeser (CSS menumpuknya di atas foto) -->
       <div class="hero-caption">
         <div class="container">
-
-          <!-- h1 = judul utama halaman, hanya ada satu h1 per halaman -->
           <h1 class="hero-title">NUS High School<br>of Mathematics and Science</h1>
-
-          <!-- Slogan buatan sendiri (bukan slogan resmi) agar orisinal -->
           <p class="hero-slogan">Rasa ingin tahu hari ini, inovasi untuk masa depan.</p>
-
-          <!-- Tombol ke section Profil: btn (Bootstrap) + btn-nush (buatan sendiri) -->
+          <!-- btn = tombol Bootstrap, btn-nush = warna buatan sendiri -->
           <a href="#profil" class="btn btn-nush btn-lg">Selengkapnya</a>
-
         </div>
       </div>
 
     </section>
-    <!-- ==================== PROFIL SECTION ==================== -->
-    <!--
-      id="profil" = tujuan menu Profil dan tombol "Selengkapnya" di hero.
-      Isinya 3 baris zigzag: gambar kiri-teks kanan, gambar kanan-teks kiri,
-      lalu kembali gambar kiri-teks kanan.
-    -->
+
+    <!-- ==================== PROFIL ==================== -->
+    <!-- 3 baris zigzag: gambar kiri, kanan, lalu kiri lagi -->
     <section id="profil" class="section-padding">
       <div class="container">
 
         <h2 class="section-title text-center">Profil Sekolah</h2>
 
         <!--
-          BARIS 1: gambar KIRI, teks KANAN
-          - row                 : baris Grid Bootstrap
-          - col-lg-6            : tiap kolom setengah lebar di layar besar (>=992px);
-                                  di bawah itu kolom menumpuk (gambar di atas, teks di bawah)
-          - g-5                 : jarak antar kolom
-          - align-items-center  : gambar dan teks sejajar di tengah secara vertikal
-          - mb-5                : jarak ke baris berikutnya
-          - reveal reveal-kiri  : kelas buatan sendiri, elemen meluncur masuk dari kiri
-                                  saat muncul di layar (diatur CSS + JS di bawah halaman)
+          BARIS 1: gambar kiri, teks kanan
+          - col-lg-6: dua kolom sama lebar di layar besar, menumpuk di layar kecil
+          - align-items-center: gambar dan teks sejajar di tengah
+          - reveal reveal-kiri: meluncur masuk dari kiri saat di-scroll (CSS + JS di bawah)
         -->
-        <div class="row g-5 align-items-center profil-row mb-5">
+        <div class="row g-5 align-items-center mb-5">
           <div class="col-lg-6 reveal reveal-kiri">
             <img src="images/visi1.jpg"
-            loading:="lazy"
+                 loading="lazy"
                  class="profil-img"
                  alt="Siswa dan lingkungan belajar NUS High School of Mathematics and Science">
           </div>
           <div class="col-lg-6 reveal reveal-kanan">
-            <!-- profil-label = label kecil teal di atas judul, ikon dari Bootstrap Icons -->
             <span class="profil-label"><i class="bi bi-building"></i> Tentang Sekolah</span>
             <h3 class="profil-judul">Sekolah Khusus Matematika dan Sains</h3>
-            <!-- lead = gaya paragraf pembuka Bootstrap (font sedikit lebih besar) -->
             <p class="lead">
               NUS High School of Mathematics and Science adalah sekolah khusus
               berasrama di Singapura yang berdiri sejak tahun 2005 dan bernaung
@@ -196,13 +162,8 @@
           </div>
         </div>
 
-        <!--
-          BARIS 2: gambar KANAN, teks KIRI
-          - flex-lg-row-reverse : membalik urutan kolom HANYA di layar besar.
-            Di HTML gambar tetap ditulis lebih dulu, jadi di HP urutannya
-            tetap gambar di atas, teks di bawah (konsisten dengan baris lain).
-        -->
-        <div class="row g-5 align-items-center profil-row mb-5 flex-lg-row-reverse">
+        <!-- BARIS 2: gambar kanan, teks kiri (flex-lg-row-reverse membalik urutan hanya di layar besar) -->
+        <div class="row g-5 align-items-center mb-5 flex-lg-row-reverse">
           <div class="col-lg-6 reveal reveal-kanan">
             <img src="images/visi2.png"
                  class="profil-img"
@@ -218,8 +179,8 @@
           </div>
         </div>
 
-        <!-- BARIS 3: gambar KIRI lagi, teks KANAN (misi sebagai daftar) -->
-        <div class="row g-5 align-items-center profil-row">
+        <!-- BARIS 3: gambar kiri, teks kanan (misi berupa daftar) -->
+        <div class="row g-5 align-items-center">
           <div class="col-lg-6 reveal reveal-kiri">
             <img src="images/visi3.png"
                  class="profil-img"
@@ -228,8 +189,7 @@
           <div class="col-lg-6 reveal reveal-kanan">
             <span class="profil-label"><i class="bi bi-bullseye"></i> Misi</span>
             <h3 class="profil-judul">Langkah Kami Mewujudkannya</h3>
-            <!-- Misi ditampilkan sebagai daftar (<ul> berisi <li>), sesuai soal -->
-            <ul class="misi-list mb-0">
+            <ul class="mb-0">
               <li>Menyelenggarakan pendidikan matematika dan sains yang menantang dan berkualitas.</li>
               <li>Menumbuhkan rasa ingin tahu, semangat meneliti, dan kemampuan memecahkan masalah.</li>
               <li>Menyeimbangkan sains dengan bahasa, humaniora, dan seni.</li>
@@ -240,37 +200,24 @@
 
       </div>
     </section>
-        <!-- ==================== AKADEMIK SECTION ==================== -->
-    <!--
-      id="akademik" = tujuan menu Akademik di navbar.
-      bg-nush-muda  = latar abu muda (kelas buatan sendiri), supaya section
-                      ini terlihat beda dari Profil yang berlatar putih.
-    -->
+
+    <!-- ==================== AKADEMIK ==================== -->
+    <!-- bg-nush-muda: latar abu muda, selang-seling dengan section putih -->
     <section id="akademik" class="section-padding bg-nush-muda">
       <div class="container">
 
         <h2 class="section-title text-center">Informasi Akademik</h2>
 
         <!--
-          GRID BOOTSTRAP untuk 3 kartu
-          - row g-4   : baris dengan jarak antar kartu
-          - col-12    : di HP, tiap kartu selebar layar (menumpuk)
-          - col-md-4  : mulai tablet (>=768px), 3 kartu berjajar (masing-masing 4 dari 12 kolom)
+          Grid 3 kartu: col-12 = 1 kolom di HP, col-md-4 = 3 kolom mulai tablet
+          - card h-100: komponen Card Bootstrap, tinggi semua kartu sama
+          - delay-2 / delay-3: kartu muncul berurutan, bukan serentak
         -->
         <div class="row g-4">
 
-          <!--
-            KARTU 1: Kurikulum & Peminatan
-            - reveal reveal-bawah : muncul dari bawah saat di-scroll (diatur CSS + JS)
-            - delay-1/2/3         : kartu muncul berurutan, bukan serentak
-            - card (Bootstrap)    : komponen kartu
-            - h-100               : tinggi semua kartu disamakan walau isinya beda panjang
-            - kartu-akademik      : penyesuaian buatan sendiri (bayangan, hover, dsb)
-          -->
-          <div class="col-12 col-md-4 reveal reveal-bawah delay-1">
+          <div class="col-12 col-md-4 reveal reveal-bawah">
             <div class="card kartu-akademik h-100">
               <div class="card-body text-center">
-                <!-- Ikon dari Bootstrap Icons, dibungkus lingkaran lewat kelas ikon-akademik -->
                 <div class="ikon-akademik">
                   <i class="bi bi-mortarboard-fill"></i>
                 </div>
@@ -284,7 +231,6 @@
             </div>
           </div>
 
-          <!-- KARTU 2: Ekstrakurikuler -->
           <div class="col-12 col-md-4 reveal reveal-bawah delay-2">
             <div class="card kartu-akademik h-100">
               <div class="card-body text-center">
@@ -301,7 +247,6 @@
             </div>
           </div>
 
-          <!-- KARTU 3: Prestasi Siswa -->
           <div class="col-12 col-md-4 reveal reveal-bawah delay-3">
             <div class="card kartu-akademik h-100">
               <div class="card-body text-center">
@@ -321,53 +266,37 @@
         </div>
       </div>
     </section>
-        <!-- ==================== BERITA SECTION ==================== -->
-    <!--
-      id="berita" = tujuan menu Berita di navbar.
-      Tanpa bg-nush-muda, jadi latarnya putih. Dengan begitu warna latar
-      selang-seling: Profil (putih), Akademik (abu), Berita (putih), Galeri (abu).
-    -->
+
+    <!-- ==================== BERITA ==================== -->
     <section id="berita" class="section-padding">
       <div class="container">
 
         <h2 class="section-title text-center">Berita Terbaru</h2>
 
-        <!-- Grid: HP 1 kartu, tablet dan desktop 3 kartu berjajar (sama seperti Akademik) -->
+        <!--
+          Grid 3 kartu (sama seperti Akademik)
+          - d-flex flex-column pada card-body + mt-auto pada tautan:
+            tombol "Baca Selengkapnya" selalu menempel di dasar kartu
+          - loading="lazy": gambar diunduh saat mendekati layar
+          - <time datetime>: tanggal yang bisa dibaca mesin
+        -->
         <div class="row g-4">
 
-          <!--
-            BERITA 1
-            - reveal reveal-bawah delay-1 : muncul dari bawah saat di-scroll, berurutan
-            - card h-100                  : komponen Card Bootstrap, tinggi semua kartu sama
-            - kartu-berita                : penyesuaian buatan sendiri (CSS)
-            - d-flex flex-column          : isi kartu disusun vertikal, supaya tombol
-                                            "Baca Selengkapnya" selalu menempel di dasar kartu
-          -->
-          <div class="col-12 col-md-4 reveal reveal-bawah delay-1">
+          <div class="col-12 col-md-4 reveal reveal-bawah">
             <article class="card kartu-berita h-100">
-
-              <!-- Gambar berita. card-img-top = posisi gambar di atas kartu.
-                   loading="lazy" = gambar diunduh saat mendekati layar (lebih ringan). -->
               <img src="images/berita-olimpiade.jpg"
                    class="card-img-top"
                    loading="lazy"
                    alt="Students examine what makes a liveable city at 30th NUS Geography Challenge">
-
               <div class="card-body d-flex flex-column">
-
-                <!-- <time datetime="..."> = elemen semantik untuk tanggal.
-                     Teks yang tampil bebas, atribut datetime dibaca mesin (format tahun-bulan-hari). -->
                 <p class="berita-tanggal">
                   <i class="bi bi-calendar3"></i>
                   <time datetime="2026-09-12">12 September 2026</time>
                 </p>
-
                 <h3 class="card-title h5">Students examine what makes a liveable city at 30th NUS Geography Challenge</h3>
                 <p class="card-text">
-                 Students from the NUS High School of Mathematics and Science yesterday emerged champions of the 30th NUS Geography Challenge, a national competition organised by the Department of Geography at the National University of Singapore (NUS).
+                  Students from the NUS High School of Mathematics and Science yesterday emerged champions of the 30th NUS Geography Challenge, a national competition organised by the Department of Geography at the National University of Singapore (NUS).
                 </p>
-
-                <!-- mt-auto = dorong tautan ke dasar kartu, apa pun panjang teksnya -->
                 <a href="https://news.nus.edu.sg/30th-nus-geography-challenge/" class="berita-link mt-auto">
                   Baca Selengkapnya <i class="bi bi-arrow-right"></i>
                 </a>
@@ -375,7 +304,6 @@
             </article>
           </div>
 
-          <!-- BERITA 2 -->
           <div class="col-12 col-md-4 reveal reveal-bawah delay-2">
             <article class="card kartu-berita h-100">
               <img src="images/berita-penelitian.jpg"
@@ -398,7 +326,6 @@
             </article>
           </div>
 
-          <!-- BERITA 3 -->
           <div class="col-12 col-md-4 reveal reveal-bawah delay-3">
             <article class="card kartu-berita h-100">
               <img src="images/berita-kegiatan.jpg"
@@ -424,35 +351,21 @@
         </div>
       </div>
     </section>
-        <!-- ==================== GALERI SECTION ==================== -->
-    <!--
-      id="galeri" = tujuan menu Galeri di navbar.
-      bg-nush-muda = latar abu muda, melanjutkan pola selang-seling warna latar.
-    -->
+
+    <!-- ==================== GALERI ==================== -->
     <section id="galeri" class="section-padding bg-nush-muda">
       <div class="container">
 
         <h2 class="section-title text-center">Galeri Kegiatan</h2>
 
         <!--
-          GRID RESPONSIF (komponen: Grid System)
-          Setiap foto memakai: col-12 col-sm-6 col-lg-4
-          - col-12  : HP (<576px)        -> 1 kolom (foto selebar layar)
-          - col-sm-6: tablet (>=576px)   -> 2 kolom (12 / 6 = 2 foto per baris)
-          - col-lg-4: desktop (>=992px)  -> 3 kolom (12 / 4 = 3 foto per baris)
-          - g-4     : jarak antar foto
+          Grid responsif: col-12 = 1 foto per baris di HP,
+          col-sm-6 = 2 di tablet, col-lg-4 = 3 di desktop.
+          <figure> + <figcaption> = foto beserta keterangannya (muncul saat hover).
         -->
         <div class="row g-4">
 
-          <!--
-            FOTO 1
-            - <figure>     : elemen semantik HTML5 untuk gambar beserta keterangannya
-            - <figcaption> : keterangan foto (muncul saat hover, lihat CSS)
-            - reveal reveal-bawah delay-1 : animasi muncul dari bawah saat di-scroll
-            - galeri-item  : kelas buatan sendiri (CSS)
-            - loading="lazy" : gambar diunduh saat mendekati layar (lebih ringan)
-          -->
-          <div class="col-12 col-sm-6 col-lg-4 reveal reveal-bawah delay-1">
+          <div class="col-12 col-sm-6 col-lg-4 reveal reveal-bawah">
             <figure class="galeri-item">
               <img src="images/galeri-laboratorium.jpg"
                    loading="lazy"
@@ -461,7 +374,6 @@
             </figure>
           </div>
 
-          <!-- FOTO 2 -->
           <div class="col-12 col-sm-6 col-lg-4 reveal reveal-bawah delay-2">
             <figure class="galeri-item">
               <img src="images/galeri-olahraga.jpg"
@@ -471,7 +383,6 @@
             </figure>
           </div>
 
-          <!-- FOTO 3 -->
           <div class="col-12 col-sm-6 col-lg-4 reveal reveal-bawah delay-3">
             <figure class="galeri-item">
               <img src="images/galeri-perpustakaan.jpg"
@@ -481,8 +392,7 @@
             </figure>
           </div>
 
-          <!-- FOTO 4 -->
-          <div class="col-12 col-sm-6 col-lg-4 reveal reveal-bawah delay-1">
+          <div class="col-12 col-sm-6 col-lg-4 reveal reveal-bawah">
             <figure class="galeri-item">
               <img src="images/galeri-seni.jpg"
                    loading="lazy"
@@ -491,7 +401,6 @@
             </figure>
           </div>
 
-          <!-- FOTO 5 -->
           <div class="col-12 col-sm-6 col-lg-4 reveal reveal-bawah delay-2">
             <figure class="galeri-item">
               <img src="images/galeri-robotik.jpg"
@@ -501,7 +410,6 @@
             </figure>
           </div>
 
-          <!-- FOTO 6 -->
           <div class="col-12 col-sm-6 col-lg-4 reveal reveal-bawah delay-3">
             <figure class="galeri-item">
               <img src="images/galeri-upacara.jpg"
@@ -514,25 +422,17 @@
         </div>
       </div>
     </section>
+
   </main>
 
-    <!-- ==================== FOOTER ==================== -->
-  <!--
-    <footer> = elemen semantik HTML5 untuk penutup halaman.
-    id="kontak" = tujuan menu Kontak di navbar.
-  -->
+  <!-- ==================== FOOTER ==================== -->
   <footer id="kontak" class="footer-nush">
     <div class="container">
 
-      <!--
-        GRID 3 KOLOM
-        - col-12     : HP, tiap kolom menumpuk
-        - col-md-6   : tablet, 2 kolom per baris
-        - col-lg-4   : desktop, 3 kolom sejajar
-      -->
+      <!-- Grid footer: 1 kolom di HP, 2 di tablet, 3 di desktop -->
       <div class="row g-4">
 
-        <!-- KOLOM 1: nama sekolah dan deskripsi singkat -->
+        <!-- Kolom 1: deskripsi singkat -->
         <div class="col-12 col-md-6 col-lg-4">
           <h3 class="footer-judul">NUS High School of Mathematics and Science</h3>
           <p class="footer-teks">
@@ -541,11 +441,9 @@
           </p>
         </div>
 
-        <!-- KOLOM 2: kontak (alamat, telepon, email) -->
+        <!-- Kolom 2: kontak (tel: = ketuk untuk menelepon, mailto: = buka aplikasi email) -->
         <div class="col-12 col-md-6 col-lg-4">
           <h3 class="footer-judul">Kontak</h3>
-
-          <!-- <address> = elemen semantik untuk informasi kontak -->
           <address class="footer-teks">
             <p class="mb-2">
               <i class="bi bi-geo-alt-fill"></i>
@@ -553,26 +451,19 @@
             </p>
             <p class="mb-2">
               <i class="bi bi-telephone-fill"></i>
-              <!-- tel: = di HP, ketuk untuk langsung menelepon -->
               <a href="tel:+6565161709">+65 6516 1709</a>
             </p>
             <p class="mb-0">
               <i class="bi bi-envelope-fill"></i>
-              <!-- mailto: = klik untuk membuka aplikasi email -->
               <a href="mailto:einstein@highsch.nus.edu.sg">einstein@highsch.nus.edu.sg</a>
             </p>
           </address>
         </div>
 
-        <!-- KOLOM 3: media sosial (ikon) -->
+        <!-- Kolom 3: media sosial (aria-label dibutuhkan karena tautannya hanya berisi ikon) -->
         <div class="col-12 col-md-6 col-lg-4">
           <h3 class="footer-judul">Ikuti Kami</h3>
           <div class="footer-sosmed">
-            <!--
-              Setiap tautan hanya berisi ikon, jadi wajib punya aria-label
-              supaya screen reader tahu fungsinya. Ganti href="#" dengan
-              alamat akun yang sebenarnya.
-            -->
             <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
             <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
             <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
@@ -582,7 +473,6 @@
 
       </div>
 
-      <!-- Garis pemisah dan hak cipta -->
       <hr class="footer-garis">
       <p class="footer-hak-cipta">
         &copy; 2026 NUS High School of Mathematics and Science.
@@ -592,31 +482,21 @@
     </div>
   </footer>
 
-  <!-- Bootstrap 5 JS (lokal dari node_modules, wajib untuk hamburger dan carousel) -->
+  <!-- Bootstrap 5 JS (wajib untuk hamburger dan carousel) -->
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!--
-    SCRIPT EFEK MUNCUL SAAT SCROLL
-    IntersectionObserver = fitur bawaan browser untuk mendeteksi kapan sebuah
-    elemen masuk ke area layar.
-  -->
-  <script>
-    // Ambil semua elemen yang punya kelas "reveal"
-    const elemenReveal = document.querySelectorAll('.reveal');
 
-    // Pengamat: dipanggil setiap kali ada elemen yang masuk/keluar layar
+  <!-- Efek muncul saat scroll: IntersectionObserver (fitur bawaan browser) mendeteksi elemen yang masuk layar -->
+  <script>
     const pengamat = new IntersectionObserver((daftar, pengamatIni) => {
       daftar.forEach((item) => {
         if (item.isIntersecting) {
-          // Elemen sudah terlihat, tambahkan kelas "tampil" (memicu animasi CSS)
-          item.target.classList.add('tampil');
-          // Berhenti mengamati: animasi cukup sekali, elemen tidak hilang lagi
-          pengamatIni.unobserve(item.target);
+          item.target.classList.add('tampil'); // memicu animasi CSS
+          pengamatIni.unobserve(item.target);  // animasi cukup sekali
         }
       });
-    }, { threshold: 0.2 }); // animasi mulai saat 20% elemen sudah terlihat
+    }, { threshold: 0.2 }); // mulai saat 20% elemen terlihat
 
-    // Daftarkan semua elemen reveal ke pengamat
-    elemenReveal.forEach((el) => pengamat.observe(el));
+    document.querySelectorAll('.reveal').forEach((el) => pengamat.observe(el));
   </script>
 </body>
 

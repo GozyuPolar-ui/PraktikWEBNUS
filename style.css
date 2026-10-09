@@ -1,17 +1,17 @@
-/* ==================== VARIABEL WARNA & FONT ==================== */
+/* ===== VARIABEL WARNA & FONT ===== */
 :root {
   --warna-utama: #00A8A8;        /* teal dari logo */
-  --warna-utama-gelap: #007F82;  /* teal lebih gelap untuk hover/link */
+  --warna-utama-gelap: #007F82;  /* teal gelap untuk hover/link */
   --warna-teks: #484848;         /* abu arang dari logo */
   --warna-latar: #F4F9F9;        /* latar section selang-seling */
   --font-judul: 'Poppins', sans-serif;
   --font-isi: 'Inter', sans-serif;
 }
 
-/* ==================== PENGATURAN DASAR ==================== */
+/* ===== DASAR ===== */
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* supaya judul section tidak tertutup navbar saat diklik */
+  scroll-behavior: smooth;  /* klik menu = scroll halus */
+  scroll-padding-top: 80px; /* judul section tidak tertutup navbar */
 }
 
 body {
@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-judul);
 }
 
-/* ==================== NAVBAR ==================== */
+/* ===== NAVBAR ===== */
 .navbar-brand .brand-name {
   font-family: var(--font-judul);
   font-weight: 600;
@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 0 0.2rem rgba(0, 168, 168, 0.35);
 }
 
-/* Garis bawah animasi saat hover (hanya di desktop) */
+/* Garis bawah menu saat hover (hanya desktop) */
 @media (min-width: 992px) {
   .navbar .nav-link::after {
     content: "";
@@ -73,45 +73,31 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ==================== HERO SECTION ==================== */
+/* ===== HERO ===== */
 
-/* Section jadi "patokan posisi". Lapisan gelap dan teks yang memakai
-   position: absolute akan menempel ke section ini, bukan ke halaman. */
+/* Patokan posisi untuk lapisan gelap dan teks (position: absolute) */
 .hero {
   position: relative;
 }
 
-/* Foto banner:
-   - height 85vh        : tinggi 85% layar, pas di semua perangkat
-   - min-height 480px   : tidak terlalu pendek di layar landscape/kecil
-   - object-fit: cover  : foto dipotong rapi mengisi area, tidak gepeng */
+/* Foto banner: tinggi 85% layar, dipotong rapi (cover) */
 .hero .carousel-item img {
   height: 85vh;
   min-height: 480px;
   object-fit: cover;
 }
 
-/* Lapisan gelap SATU untuk semua foto (pseudo-element ::after di section).
-   Karena menempel ke section, bukan ke slide, lapisan ini tidak ikut
-   bergeser saat foto berganti.
-   - inset: 0            : menutupi seluruh section
-   - gradasi             : gelap di kiri (tempat teks), terang di kanan
-   - z-index: 1          : di atas foto, di bawah teks
-   - pointer-events none : tidak menghalangi klik ke panah/tombol */
+/* Lapisan gelap di atas foto, gelap di kiri tempat teks berada */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.15));
-  pointer-events: none;
+  pointer-events: none; /* klik tembus ke panah carousel */
 }
 
-/* Lapisan teks tetap, ditumpuk di atas foto dan lapisan gelap.
-   - position absolute + inset 0 : menutupi seluruh section
-   - z-index: 2                  : di atas lapisan gelap (1)
-   - display flex + align-items center : teks di tengah secara vertikal
-   - pointer-events none         : klik "tembus" ke panah dan titik di bawahnya */
+/* Teks hero tetap diam di atas foto (tidak ikut bergeser) */
 .hero-caption {
   position: absolute;
   inset: 0;
@@ -122,19 +108,24 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
-/* Tombol di dalam teks tetap harus bisa diklik. */
 .hero-caption .btn {
-  pointer-events: auto;
+  pointer-events: auto; /* tombol tetap bisa diklik */
 }
 
-/* Ruang kosong kiri-kanan supaya teks tidak mepet panah carousel. */
+/* Ruang kiri-kanan agar teks tidak mepet panah */
 .hero-caption .container {
   padding-left: 4.5rem;
   padding-right: 4.5rem;
 }
 
-/* Panah dan titik indikator dinaikkan di atas lapisan teks (z-index 3).
-   Lebar area panah dipersempit supaya ikonnya di pinggir layar. */
+@media (max-width: 575.98px) {
+  .hero-caption .container {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+}
+
+/* Panah dan titik indikator di atas teks */
 .carousel-control-prev,
 .carousel-control-next {
   width: 6%;
@@ -146,9 +137,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 3;
 }
 
-/* Judul hero.
-   clamp(min, ideal, max) = ukuran font fleksibel mengikuti lebar layar,
-   tidak pernah lebih kecil dari 1.75rem atau lebih besar dari 3.5rem. */
+/* clamp(min, ideal, max): ukuran font mengikuti lebar layar */
 .hero-title {
   font-weight: 700;
   font-size: clamp(1.75rem, 5vw, 3.5rem);
@@ -156,7 +145,6 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Slogan: max-width menjaga baris tidak terlalu panjang. */
 .hero-slogan {
   font-size: clamp(1rem, 2.5vw, 1.35rem);
   margin: 1rem 0 1.75rem;
@@ -164,17 +152,7 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* Di HP, ruang kiri-kanan dikecilkan karena layar sempit. */
-@media (max-width: 575.98px) {
-  .hero-caption .container {
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
-  }
-}
-
-/* ==================== TOMBOL UTAMA ==================== */
-/* Modifikasi komponen Button Bootstrap (bukan salinan mentah, sesuai
-   ketentuan orisinalitas). Dipakai ulang di section lain. */
+/* ===== TOMBOL (modifikasi .btn Bootstrap) ===== */
 .btn-nush {
   background-color: var(--warna-utama);
   border-color: var(--warna-utama);
@@ -186,7 +164,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: background-color 0.2s, transform 0.2s;
 }
 
-/* Hover: teal lebih gelap dan tombol naik 2px sebagai umpan balik. */
 .btn-nush:hover {
   background-color: var(--warna-utama-gelap);
   border-color: var(--warna-utama-gelap);
@@ -194,23 +171,17 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
-/* ==================== STYLE UMUM UNTUK SEMUA SECTION ==================== */
-
-/* Jarak atas-bawah tiap section. Dipakai ulang di Profil, Akademik,
-   Berita, dan Galeri supaya ritme jarak konsisten. */
+/* ===== STYLE UMUM SECTION ===== */
 .section-padding {
   padding: 5rem 0;
 }
 
-/* Latar abu muda untuk section selang-seling (dipasang di Akademik dan Galeri). */
+/* Latar abu muda untuk section selang-seling */
 .bg-nush-muda {
   background-color: var(--warna-latar);
 }
 
-/* Judul section.
-   - color: abu arang dari logo
-   - ::after membuat garis teal kecil di bawah judul sebagai aksen
-   - margin: 0 auto  : garis ke tengah, mengikuti text-center */
+/* Judul section dengan garis teal kecil di bawahnya */
 .section-title {
   font-weight: 700;
   color: var(--warna-teks);
@@ -227,20 +198,14 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2px;
 }
 
-/* ==================== PROFIL (ZIGZAG) ==================== */
+/* ===== PROFIL ===== */
 
-/* Section Profil: overflow-x hidden mencegah muncul scrollbar horizontal
-   saat elemen meluncur dari samping (translateX) sebelum animasinya selesai. */
+/* Cegah scrollbar horizontal saat elemen meluncur dari samping */
 #profil {
   overflow-x: hidden;
 }
 
-/* Gambar profil:
-   - width 100%         : selebar kolomnya
-   - aspect-ratio 4/3   : semua gambar punya proporsi sama walau ukuran aslinya beda
-   - object-fit cover   : dipotong rapi, tidak gepeng
-   - border-radius      : sudut membulat
-   - box-shadow         : bayangan agar gambar terlihat terangkat */
+/* Semua gambar berproporsi sama (4:3) walau ukuran aslinya beda */
 .profil-img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -261,41 +226,35 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
 }
 
-/* Judul tiap baris */
 .profil-judul {
   font-weight: 700;
   color: var(--warna-teks);
   margin-bottom: 1rem;
 }
 
-/* ==================== EFEK MUNCUL SAAT SCROLL ==================== */
+/* ===== EFEK MUNCUL SAAT SCROLL ===== */
 
-/* Kondisi awal: elemen transparan dan bergeser dari posisinya.
-   transition = perpindahan halus selama 0.8 detik. */
+/* Awal: transparan dan bergeser. Kelas "tampil" ditambah oleh JavaScript. */
 .reveal {
   opacity: 0;
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Datang dari kiri: awalnya 60px di sebelah kiri posisi akhir */
-.reveal-kiri {
-  transform: translateX(-60px);
-}
+.reveal-kiri  { transform: translateX(-60px); }
+.reveal-kanan { transform: translateX(60px); }
+.reveal-bawah { transform: translateY(40px); }
 
-/* Datang dari kanan: awalnya 60px di sebelah kanan posisi akhir */
-.reveal-kanan {
-  transform: translateX(60px);
-}
-
-/* Kondisi akhir (kelas "tampil" ditambahkan oleh JavaScript):
-   elemen terlihat penuh dan berada di posisi aslinya. */
+/* Akhir: terlihat penuh di posisi asli */
 .reveal.tampil {
   opacity: 1;
   transform: none;
 }
 
-/* Aksesibilitas: untuk pengguna yang mematikan animasi di pengaturan
-   sistemnya, elemen langsung tampil tanpa gerakan. */
+/* Muncul bergantian: kartu 2 dan 3 sedikit tertunda */
+.delay-2 { transition-delay: 0.15s; }
+.delay-3 { transition-delay: 0.3s; }
+
+/* Pengguna yang mematikan animasi di sistemnya: langsung tampil */
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
@@ -304,32 +263,34 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ==================== AKADEMIK ==================== */
-
-/* Modifikasi Card Bootstrap:
-   - border none          : hapus garis tepi bawaan
-   - border-top teal      : garis aksen tebal di atas kartu sebagai ciri khas
-   - box-shadow           : kartu terlihat terangkat
-   - transition           : perubahan saat hover berlangsung halus */
-.kartu-akademik {
+/* ===== KARTU AKADEMIK & BERITA (modifikasi .card Bootstrap) ===== */
+.kartu-akademik,
+.kartu-berita {
   border: none;
-  border-top: 5px solid var(--warna-utama);
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Saat kursor di atas kartu: naik 6px dan bayangan membesar (umpan balik interaksi). */
-.kartu-akademik:hover {
+/* Hover: kartu naik dan bayangan membesar */
+.kartu-akademik:hover,
+.kartu-berita:hover {
   transform: translateY(-6px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
 }
 
-/* Lingkaran pembungkus ikon.
-   - width/height sama + border-radius 50% : bentuk lingkaran sempurna
-   - background teal transparan            : warna lembut dari warna logo
-   - display flex + center                 : ikon tepat di tengah lingkaran
-   - margin 0 auto 1rem                    : lingkaran di tengah kartu, jarak ke judul */
+.kartu-akademik .card-title,
+.kartu-berita .card-title {
+  font-weight: 600;
+  color: var(--warna-teks);
+}
+
+/* ===== AKADEMIK ===== */
+.kartu-akademik {
+  border-top: 5px solid var(--warna-utama); /* garis aksen di atas kartu */
+}
+
+/* Lingkaran pembungkus ikon */
 .ikon-akademik {
   width: 72px;
   height: 72px;
@@ -341,66 +302,28 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
 }
 
-/* Ukuran dan warna ikon di dalam lingkaran */
 .ikon-akademik i {
   font-size: 2rem;
   color: var(--warna-utama-gelap);
 }
 
-.kartu-akademik .card-title {
-  font-weight: 600;
-  color: var(--warna-teks);
-}
+/* ===== BERITA ===== */
 
-/* ==================== ARAH ANIMASI TAMBAHAN: DARI BAWAH ==================== */
-
-/* Melengkapi reveal-kiri dan reveal-kanan: kartu naik dari bawah.
-   Kelas ".tampil" dari JS tetap yang mengembalikannya ke posisi asli. */
-.reveal-bawah {
-  transform: translateY(40px);
-}
-
-/* Jeda bertingkat: kartu 2 muncul 0.15 detik setelah kartu 1, dst. */
-.delay-1 { transition-delay: 0s; }
-.delay-2 { transition-delay: 0.15s; }
-.delay-3 { transition-delay: 0.3s; }
-
-/* ==================== BERITA ==================== */
-
-/* Modifikasi Card Bootstrap untuk berita.
-   - overflow hidden : gambar yang membesar saat hover tidak keluar dari kartu,
-                       dan sudut gambar ikut membulat mengikuti kartu
-   - border-radius   : sudut membulat
-   - box-shadow      : kartu terlihat terangkat dari latar putih */
+/* overflow hidden: gambar yang membesar saat hover tidak keluar kartu */
 .kartu-berita {
-  border: none;
-  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.kartu-berita:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
-}
-
-/* Gambar berita:
-   - aspect-ratio 16/10 : semua gambar proporsinya sama walau ukuran aslinya beda
-   - object-fit cover   : dipotong rapi, tidak gepeng
-   - transition         : zoom saat hover berjalan halus */
 .kartu-berita .card-img-top {
   aspect-ratio: 16 / 10;
   object-fit: cover;
   transition: transform 0.4s ease;
 }
 
-/* Gambar membesar sedikit saat kartu di-hover (tetap terpotong rapi oleh overflow hidden). */
 .kartu-berita:hover .card-img-top {
   transform: scale(1.06);
 }
 
-/* Tanggal berita: kecil dan berwarna teal gelap supaya terbaca tapi tidak mencolok */
 .berita-tanggal {
   font-size: 0.85rem;
   font-weight: 500;
@@ -408,14 +331,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
 }
 
-.kartu-berita .card-title {
-  font-weight: 600;
-  color: var(--warna-teks);
-}
-
-/* Tautan "Baca Selengkapnya":
-   - tanpa garis bawah, tebal, warna teal gelap
-   - gap menjaga jarak teks ke ikon panah */
+/* Tautan "Baca Selengkapnya" */
 .berita-link {
   display: inline-flex;
   align-items: center;
@@ -425,41 +341,30 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 
-/* Hover: panah bergeser ke kanan sebagai petunjuk bahwa ini bisa diklik */
-.berita-link i {
-  transition: transform 0.2s ease;
-}
-
 .berita-link:hover {
   color: var(--warna-utama);
+}
+
+/* Hover: panah bergeser ke kanan */
+.berita-link i {
+  transition: transform 0.2s ease;
 }
 
 .berita-link:hover i {
   transform: translateX(4px);
 }
 
-/* ==================== GALERI ==================== */
+/* ===== GALERI ===== */
 
-/* Pembungkus tiap foto.
-   - position relative : patokan posisi untuk keterangan (figcaption) yang absolute
-   - overflow hidden   : foto yang membesar saat hover tidak keluar dari kotaknya
-   - margin 0          : <figure> bawaan browser punya margin, dihapus agar grid rapi
-   - border-radius     : sudut membulat
-   - box-shadow        : kotak terlihat terangkat dari latar abu */
+/* position: relative = patokan untuk keterangan foto (figcaption) */
 .galeri-item {
   position: relative;
   overflow: hidden;
-  margin: 0;
+  margin: 0; /* hapus margin bawaan <figure> */
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
-/* Foto galeri:
-   - display block        : hilangkan celah kecil di bawah gambar
-   - aspect-ratio 4/3     : semua foto proporsinya sama walau ukuran aslinya beda,
-                            jadi grid selalu rapi
-   - object-fit cover     : dipotong rapi, tidak gepeng
-   - transition           : zoom saat hover berjalan halus */
 .galeri-item img {
   display: block;
   width: 100%;
@@ -468,16 +373,11 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.4s ease;
 }
 
-/* Hover: foto membesar sedikit */
 .galeri-item:hover img {
   transform: scale(1.08);
 }
 
-/* Keterangan foto:
-   - position absolute + left/right/bottom 0 : menempel di dasar foto selebar foto
-   - gradasi gelap ke transparan              : teks putih tetap terbaca di foto terang
-   - transform translateY(100%)               : awalnya tersembunyi di bawah foto
-   - transition                               : naik dengan halus saat hover */
+/* Keterangan foto: tersembunyi di bawah, naik saat hover */
 .galeri-item figcaption {
   position: absolute;
   left: 0;
@@ -492,29 +392,24 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.3s ease;
 }
 
-/* Hover: keterangan naik dan terlihat */
 .galeri-item:hover figcaption {
   transform: translateY(0);
 }
 
-/* Layar sentuh (HP/tablet) tidak punya hover, jadi keterangan
-   langsung ditampilkan supaya tetap terbaca. */
+/* Layar sentuh tidak punya hover: keterangan langsung tampil */
 @media (hover: none) {
   .galeri-item figcaption {
     transform: translateY(0);
   }
 }
-/* ==================== FOOTER ==================== */
 
-/* Latar abu arang dari logo, teks putih.
-   padding atas besar, bawah lebih kecil karena ada baris hak cipta. */
+/* ===== FOOTER ===== */
 .footer-nush {
   background-color: var(--warna-teks);
   color: #fff;
   padding: 4rem 0 1.5rem;
 }
 
-/* Judul kolom footer, dengan garis teal kecil di bawahnya (konsisten dengan judul section) */
 .footer-judul {
   font-size: 1.1rem;
   font-weight: 600;
@@ -531,22 +426,18 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2px;
 }
 
-/* Teks isi footer: putih sedikit transparan supaya tidak terlalu menyilaukan.
-   font-style normal karena <address> bawaannya miring. */
+/* font-style normal: <address> bawaannya miring */
 .footer-teks {
   color: rgba(255, 255, 255, 0.85);
   font-style: normal;
   font-size: 0.95rem;
 }
 
-/* Ikon kontak berwarna teal.
-   Catatan: teal #00A8A8 cukup terang di atas abu gelap untuk ikon (bukan teks panjang). */
 .footer-teks i {
   color: var(--warna-utama);
   margin-right: 0.5rem;
 }
 
-/* Tautan telepon dan email di footer: putih, garis bawah hanya saat hover */
 .footer-teks a {
   color: #fff;
   text-decoration: none;
@@ -556,16 +447,12 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 
-/* Baris ikon media sosial */
+/* Ikon media sosial berbentuk lingkaran */
 .footer-sosmed {
   display: flex;
   gap: 0.75rem;
 }
 
-/* Tiap ikon sosmed dibuat lingkaran:
-   - width/height sama + border-radius 50% : lingkaran sempurna
-   - display flex + center                 : ikon tepat di tengah
-   - border putih transparan               : garis tepi lembut */
 .footer-sosmed a {
   width: 44px;
   height: 44px;
@@ -580,14 +467,12 @@ h1, h2, h3, h4, h5, h6 {
   transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
 }
 
-/* Hover: lingkaran terisi teal dan naik sedikit */
 .footer-sosmed a:hover {
   background-color: var(--warna-utama);
   border-color: var(--warna-utama);
   transform: translateY(-3px);
 }
 
-/* Garis pemisah dan baris hak cipta */
 .footer-garis {
   margin: 2.5rem 0 1.25rem;
   border-color: rgba(255, 255, 255, 0.3);
