@@ -484,3 +484,150 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.75);
 }
+
+/* ==================== AKADEMIK: BENTO GRID ==================== */
+
+/* Kotak dasar bento.
+   - height 100%          : kotak mengisi tinggi kolomnya, jadi kotak bersebelahan sama tinggi
+   - display flex column  : isi disusun vertikal
+   - justify-content end  : isi menempel di bawah (cocok untuk teks di atas foto)
+   - overflow hidden      : foto yang membesar saat hover tidak keluar dari kotak */
+.bento-box {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.75rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover: kotak naik sedikit dan bayangan membesar */
+.bento-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.14);
+}
+
+/* --- Varian berlatar foto --- */
+.bento-foto {
+  color: #fff;
+  min-height: 340px;
+}
+
+/* Foto menutupi seluruh kotak (position absolute + inset 0), tidak gepeng (object-fit) */
+.bento-foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Hover: foto zoom pelan (dipotong rapi oleh overflow hidden) */
+.bento-foto:hover img {
+  transform: scale(1.06);
+}
+
+/* Lapisan gelap dari bawah ke atas supaya teks putih terbaca di foto terang */
+.bento-foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.05) 70%);
+}
+
+/* Teks diletakkan di atas foto dan lapisan gelap (z-index lebih tinggi) */
+.bento-isi {
+  position: relative;
+  z-index: 2;
+}
+
+/* Kotak foto lebar (lingkungan kampus) lebih pendek karena hanya berisi judul */
+.bento-lebar {
+  min-height: 260px;
+}
+
+/* --- Teks di dalam kotak --- */
+.bento-label {
+  display: inline-block;
+  font-family: var(--font-judul);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.bento-judul {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+/* --- Varian kotak angka (putih, isi di tengah) --- */
+.bento-stat {
+  background: #fff;
+  min-height: 150px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.bento-angka {
+  font-family: var(--font-judul);
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--warna-utama-gelap);
+}
+
+.bento-ket {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--warna-teks);
+}
+
+/* --- Varian kotak terang (Ekstrakurikuler) --- */
+.bento-terang {
+  background: #fff;
+  justify-content: flex-start;
+}
+
+.bento-label-teal {
+  color: var(--warna-utama-gelap);
+}
+
+.bento-judul-gelap {
+  color: var(--warna-teks);
+}
+
+/* Chip: label kecil berbentuk pil untuk nama kegiatan */
+.chip {
+  display: inline-block;
+  margin: 0 0.35rem 0.5rem 0;
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+  background-color: rgba(0, 168, 168, 0.12);
+  color: var(--warna-utama-gelap);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* --- Varian kotak teal (Prestasi) ---
+   Gradasi ke teal gelap agar teks putih tetap kontras. */
+.bento-teal {
+  background: linear-gradient(135deg, var(--warna-utama), var(--warna-utama-gelap));
+  color: #fff;
+  justify-content: space-between;
+  min-height: 260px;
+}
+
+.bento-ikon-besar {
+  font-size: 3rem;
+  opacity: 0.9;
+}

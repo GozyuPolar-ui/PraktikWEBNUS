@@ -201,69 +201,124 @@
       </div>
     </section>
 
-    <!-- ==================== AKADEMIK ==================== -->
-    <!-- bg-nush-muda: latar abu muda, selang-seling dengan section putih -->
+        <!-- ==================== AKADEMIK SECTION ==================== -->
+    <!--
+      id="akademik" = tujuan menu Akademik di navbar.
+      Isinya dua bagian: (1) BENTO GRID berisi kotak-kotak informasi berbeda ukuran,
+      (2) PANEL INTERAKTIF (menyusul).
+    -->
     <section id="akademik" class="section-padding bg-nush-muda">
       <div class="container">
 
         <h2 class="section-title text-center">Informasi Akademik</h2>
 
         <!--
-          Grid 3 kartu: col-12 = 1 kolom di HP, col-md-4 = 3 kolom mulai tablet
-          - card h-100: komponen Card Bootstrap, tinggi semua kartu sama
-          - delay-2 / delay-3: kartu muncul berurutan, bukan serentak
+          BENTO GRID (Grid System Bootstrap, ukuran kotak tidak seragam)
+          Baris 1: kolom kiri = kotak Kurikulum (besar),
+                   kolom kanan = 2 kotak angka + 1 kotak Ekstrakurikuler (di dalam row bersarang)
+          Baris 2: kotak Prestasi (kecil) + kotak foto Kampus (lebar)
+          - g-3                : jarak antar kotak
+          - col-lg-6 / 4 / 8   : lebar kotak di desktop; di HP semua menumpuk 1 kolom
         -->
-        <div class="row g-4">
+        <div class="row g-3">
 
-          <div class="col-12 col-md-4 reveal reveal-bawah">
-            <div class="card kartu-akademik h-100">
-              <div class="card-body text-center">
-                <div class="ikon-akademik">
-                  <i class="bi bi-mortarboard-fill"></i>
-                </div>
-                <h3 class="card-title h5">Kurikulum &amp; Peminatan</h3>
-                <p class="card-text">
-                  Program enam tahun yang berujung pada diploma NUS High School.
-                  Siswa mendalami matematika dan sains, sambil tetap belajar
-                  bahasa, humaniora, dan seni.
+          <!-- KOTAK 1: Kurikulum (besar, berlatar foto) -->
+          <div class="col-12 col-lg-6 reveal reveal-bawah delay-1">
+            <!--
+              bento-box  : kotak dasar (sudut membulat, bayangan, hover naik)
+              bento-foto : varian berlatar foto dengan lapisan gelap di atasnya
+            -->
+            <article class="bento-box bento-foto">
+              <!-- Foto diposisikan menutupi seluruh kotak (CSS), alt wajib ada -->
+              <img src="images/akademik-kurikulum.jpg"
+                   loading="lazy"
+                   alt="Siswa belajar di kelas dan laboratorium sekolah">
+              <div class="bento-isi">
+                <span class="bento-label"><i class="bi bi-mortarboard-fill"></i> Kurikulum &amp; Peminatan</span>
+                <h3 class="bento-judul">Program Enam Tahun Berfokus STEM</h3>
+                <p class="mb-0">
+                  Siswa menempuh kurikulum terpadu yang berujung pada diploma sekolah,
+                  dengan penekanan matematika dan sains tanpa meninggalkan bahasa,
+                  humaniora, dan seni.
                 </p>
               </div>
+            </article>
+          </div>
+
+          <!-- KOLOM KANAN: row bersarang berisi 3 kotak -->
+          <div class="col-12 col-lg-6">
+            <div class="row g-3 h-100">
+
+              <!--
+                KOTAK 2 dan 3: angka statistik
+                - class "hitung"  : angkanya dianimasikan menghitung naik oleh JS
+                - data-target     : angka tujuan hitungan
+              -->
+              <div class="col-6 reveal reveal-bawah delay-2">
+                <div class="bento-box bento-stat">
+                  <span class="bento-angka"><span class="hitung" data-target="6">6</span></span>
+                  <span class="bento-ket">Tahun program belajar</span>
+                </div>
+              </div>
+
+              <div class="col-6 reveal reveal-bawah delay-3">
+                <div class="bento-box bento-stat">
+                  <span class="bento-angka"><span class="hitung" data-target="2005">2005</span></span>
+                  <span class="bento-ket">Tahun berdiri</span>
+                </div>
+              </div>
+
+              <!-- KOTAK 4: Ekstrakurikuler (chip berisi nama kegiatan) -->
+              <div class="col-12 reveal reveal-bawah delay-3">
+                <article class="bento-box bento-terang">
+                  <span class="bento-label bento-label-teal"><i class="bi bi-people-fill"></i> Ekstrakurikuler</span>
+                  <h3 class="bento-judul bento-judul-gelap">Tumbuh di Luar Kelas</h3>
+                  <!-- chip = label kecil berbentuk pil, berisi nama kegiatan -->
+                  <div>
+                    <span class="chip">Robotik</span>
+                    <span class="chip">Klub Sains</span>
+                    <span class="chip">Debat</span>
+                    <span class="chip">Paduan Suara</span>
+                    <span class="chip">Futsal</span>
+                    <span class="chip">Fotografi</span>
+                  </div>
+                </article>
+              </div>
+
             </div>
           </div>
 
-          <div class="col-12 col-md-4 reveal reveal-bawah delay-2">
-            <div class="card kartu-akademik h-100">
-              <div class="card-body text-center">
-                <div class="ikon-akademik">
-                  <i class="bi bi-people-fill"></i>
-                </div>
-                <h3 class="card-title h5">Ekstrakurikuler</h3>
-                <p class="card-text">
-                  Beragam kegiatan di luar kelas mulai dari klub minat, olahraga,
-                  hingga seni untuk mengasah kerja sama, kepemimpinan, dan
-                  kreativitas siswa.
+          <!-- KOTAK 5: Prestasi (kecil, warna teal polos, tanpa foto) -->
+          <div class="col-12 col-lg-4 reveal reveal-bawah delay-1">
+            <article class="bento-box bento-teal">
+              <i class="bi bi-trophy-fill bento-ikon-besar"></i>
+              <div>
+                <h3 class="bento-judul">Prestasi Siswa</h3>
+                <p class="mb-0">
+                  Siswa didorong mengikuti olimpiade, kompetisi, dan proyek
+                  penelitian untuk menguji kemampuan mereka.
                 </p>
               </div>
-            </div>
+            </article>
           </div>
 
-          <div class="col-12 col-md-4 reveal reveal-bawah delay-3">
-            <div class="card kartu-akademik h-100">
-              <div class="card-body text-center">
-                <div class="ikon-akademik">
-                  <i class="bi bi-trophy-fill"></i>
-                </div>
-                <h3 class="card-title h5">Prestasi Siswa</h3>
-                <p class="card-text">
-                  Siswa didorong mengikuti kompetisi dan proyek penelitian,
-                  sebagai wadah menguji kemampuan dan menumbuhkan semangat
-                  berprestasi.
-                </p>
+          <!-- KOTAK 6: foto Kampus (lebar) -->
+          <div class="col-12 col-lg-8 reveal reveal-bawah delay-2">
+            <article class="bento-box bento-foto bento-lebar">
+              <img src="images/akademik-kampus.jpg"
+                   loading="lazy"
+                   alt="Gedung dan lingkungan kampus sekolah">
+              <div class="bento-isi">
+                <span class="bento-label"><i class="bi bi-building"></i> Lingkungan Belajar</span>
+                <h3 class="bento-judul mb-0">Kampus yang Mendukung Rasa Ingin Tahu</h3>
               </div>
-            </div>
+            </article>
           </div>
 
         </div>
+
+        <!-- PANEL INTERAKTIF akan ditambahkan di sini (bagian 2) -->
+
       </div>
     </section>
 
@@ -497,6 +552,49 @@
     }, { threshold: 0.2 }); // mulai saat 20% elemen terlihat
 
     document.querySelectorAll('.reveal').forEach((el) => pengamat.observe(el));
+  </script>
+
+    <!--
+    SCRIPT ANGKA BERHITUNG
+    Angka di kotak statistik menghitung naik dari 0 saat kotaknya masuk layar.
+  -->
+  <script>
+    const daftarAngka = document.querySelectorAll('.hitung');
+
+    // Untuk pengguna yang mematikan animasi di sistemnya, langsung tampilkan angka akhir
+    const kurangiGerak = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!kurangiGerak) {
+      // Mulai dari 0 (di HTML sudah berisi angka akhir sebagai cadangan jika JS mati)
+      daftarAngka.forEach((el) => { el.textContent = '0'; });
+
+      const pengamatAngka = new IntersectionObserver((daftar, pengamatIni) => {
+        daftar.forEach((item) => {
+          if (!item.isIntersecting) return;
+
+          const el = item.target;
+          const tujuan = parseInt(el.dataset.target, 10); // baca angka dari data-target
+          const durasi = 1500;                            // lama hitungan: 1,5 detik
+          const waktuMulai = performance.now();
+
+          // Dipanggil tiap frame: hitung progres 0 sampai 1, lalu tampilkan angkanya
+          function langkah(sekarang) {
+            const progres = Math.min((sekarang - waktuMulai) / durasi, 1);
+            el.textContent = Math.floor(progres * tujuan);
+            if (progres < 1) {
+              requestAnimationFrame(langkah);
+            } else {
+              el.textContent = tujuan; // pastikan berhenti tepat di angka tujuan
+            }
+          }
+
+          requestAnimationFrame(langkah);
+          pengamatIni.unobserve(el); // cukup sekali
+        });
+      }, { threshold: 0.6 });
+
+      daftarAngka.forEach((el) => pengamatAngka.observe(el));
+    }
   </script>
 </body>
 
